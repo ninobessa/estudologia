@@ -50,4 +50,7 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
 
   gem "rspec-rails", git: "https://github.com/rspec/rspec-rails", branch: "main"
+  gem "shoulda-matchers", "~> 6.4"
+  gem "factory_bot_rails", "~> 6.4", ">= 6.4.4"
+  gem "faker", "~> 3.5", ">= 3.5.1"
 end
