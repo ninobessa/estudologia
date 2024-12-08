@@ -14,7 +14,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         render :create_error, status: :unprocessable_entity
       end
     when "DELETE"
-      render :destroy, status: :ok
+      render :destroy, status: :no_content
     end
   end
 end
