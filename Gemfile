@@ -37,7 +37,7 @@ gem "rack-cors"
 
 gem "jbuilder", "~> 2.13"
 gem "devise", "~> 4.9", ">= 4.9.4"
-gem "jwt", "~> 2.9", ">= 2.9.3"
+gem "devise-jwt", "~> 0.12.1"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
