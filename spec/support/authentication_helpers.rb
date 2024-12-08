@@ -36,4 +36,8 @@ module AuthenticationHelpers
   def get_with_auth(path, auth)
     get path, headers: auth_headers(auth)
   end
+
+  def destroy_with_auth(path, auth)
+    delete path, headers: auth_headers(auth)
+  end
 end
