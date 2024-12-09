@@ -1,24 +1,34 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Pré-requisitos
 
-Things you may want to cover:
+Antes de começar, certifique-se de ter os seguintes itens instalados:
 
-* Ruby version
+- [Docker](https://www.docker.com/get-started)
+- [Visual Studio Code (VSCode)](https://code.visualstudio.com/)
+- Extensão [Remote - Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) para VSCode
 
-* System dependencies
+## Configuração do Ambiente de Desenvolvimento
 
-* Configuration
+### 1. Clonar o Repositório
 
-* Database creation
+```bash 
+git clone git@github.com:ninobessa/estudologia.git
+cd estudologia
+```
 
-* Database initialization
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+### 2. Abrir a Pasta no VSCode com DevContainer
 
-* Deployment instructions
+Abra a pasta do projeto no VSCode. Após abrir, você deve ver uma notificação sugerindo que os recursos do contêiner estão disponíveis e perguntando se deseja reabrir o workspace no contêiner.
 
-* ...
+#### 3.Documentação
+
+Após iniciar a aplicação, você pode visualizar a documentação gerada pelo Swagger acessando o seguinte endereço no seu navegador:
+
+```bash 
+http://localhost:8080/swagger-ui.html
+```
+
+Isso abrirá a interface do Swagger UI, onde você pode explorar e testar os endpoints da API.
