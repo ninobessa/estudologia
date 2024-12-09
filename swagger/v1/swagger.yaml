@@ -1,0 +1,261 @@
+swagger: '2.0'
+info:
+  title: EstudologiaAPI
+  version: '1.0'
+paths:
+  /users:
+    post:
+      summary: Cria um novo usuário
+      operationId: createUser
+      tags:
+        - Users
+      parameters:
+        - name: user
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+              password:
+                type: string
+              name:
+                type: string
+      responses:
+        '201':
+          description: Usuário criado com sucesso
+        '422':
+          description: Erro de validação
+    delete:
+      summary: Deleta o usuário atual
+      operationId: deleteUser
+      tags:
+        - Users
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          type: string
+      responses:
+        '204':
+          description: Usuário deletado com sucesso
+        '401':
+          description: Não autorizado
+  /users/sign_in:
+    post:
+      summary: Faz login do usuário
+      operationId: loginUser
+      tags:
+        - Sessions
+      parameters:
+        - name: user
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+              password:
+                type: string
+      responses:
+        '200':
+          description: Login bem-sucedido
+        '401':
+          description: Credenciais inválidas
+  /users/sign_out:
+    delete:
+      summary: Faz logout do usuário
+      operationId: logoutUser
+      tags:
+        - Sessions
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Logout bem-sucedido
+        '401':
+          description: Não autorizado
+  /api/v1/posts:
+    get:
+      summary: Lista todos os posts
+      operationId: listPosts
+      tags:
+        - Posts
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Lista de posts
+    post:
+      summary: Cria um novo post
+      operationId: createPost
+      tags:
+        - Posts
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          type: string
+        - name: post
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+              content:
+                type: string
+      responses:
+        '201':
+          description: Post criado com sucesso
+        '422':
+          description: Erro de validação
+  /api/v1/posts/{id}:
+    get:
+      summary: Mostra um post específico
+      operationId: showPost
+      tags:
+        - Posts
+
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          type: string
+        - name: id
+          in: path
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Detalhes do post
+        '404':
+          description: Post não encontrado
+    put:
+      summary: Atualiza um post específico
+      operationId: updatePost
+      tags:
+        - Posts
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          type: string
+        - name: id
+          in: path
+          required: true
+          type: string
+        - name: post
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+              content:
+                type: string
+      responses:
+        '200':
+          description: Post atualizado com sucesso
+        '422':
+          description: Erro de validação
+    delete:
+      summary: Deleta um post específico
+      operationId: deletePost
+      tags:
+        - Posts
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          type: string
+        - name: id
+          in: path
+          required: true
+          type: string
+      responses:
+        '204':
+          description: Post deletado com sucesso
+        '404':
+          description: Post não encontrado
+  /api/v1/posts/{post_id}/comments:
+    get:
+      summary: Lista todos os comentários de um post
+      operationId: listComments
+      tags:
+        - Comments
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          type: string
+        - name: post_id
+          in: path
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Lista de comentários
+    post:
+      summary: Cria um novo comentário em um post
+      operationId: createComment
+      tags:
+        - Comments
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          type: string
+        - name: post_id
+          in: path
+          required: true
+          type: string
+        - name: comment
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              content:
+                type: string
+      responses:
+        '201':
+          description: Comentário criado com sucesso
+        '422':
+          description: Erro de validação
+  /api/v1/posts/{post_id}/comments/{id}:
+    delete:
+      summary: Deleta um comentário específico de um post
+      operationId: deleteComment
+      tags:
+        - Comments
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          type: string
+        - name: post_id
+          in: path
+          required: true
+          type: string
+        - name: id
+          in: path
+          required: true
+          type: string
+      responses:
+        '204':
+          description: Comentário deletado com sucesso
+        '404':
+          description: Comentário não encontrado
