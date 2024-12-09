@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "Posts", type: :request do
   let(:user) { create(:user) }
+  let(:user_token) { token(user) }
   let(:invalid_post_attributes) { { title: nil, content: "Invalid post without title." } }
   let(:valid_post_attributes) { { title: "Title", content: "Content" } }
 
@@ -11,14 +12,14 @@ RSpec.describe "Posts", type: :request do
     end
 
     it "returns http success" do
-      get_with_auth api_v1_posts_path, token(response)
+      get_with_auth api_v1_posts_path, user_token
       expect(response).to have_http_status(:success)
     end
 
     it "returns a list of posts" do
       create_list(:post, 3, user: user)
 
-      get_with_auth api_v1_posts_path, token(response)
+      get_with_auth api_v1_posts_path, user_token
       expect(json.size).to eq(3)
     end
   end
@@ -28,7 +29,7 @@ RSpec.describe "Posts", type: :request do
 
     before do
       sign_in user
-      get_with_auth api_v1_post_path(valid_post), token(response)
+      get_with_auth api_v1_post_path(valid_post), user_token
     end
 
     it "returns http success" do
@@ -116,7 +117,7 @@ RSpec.describe "Posts", type: :request do
 
     before do
       sign_in user
-      destroy_with_auth api_v1_post_path(valid_post), token(response)
+      destroy_with_auth api_v1_post_path(valid_post), user_token
     end
 
     it "destroys the requested Post" do

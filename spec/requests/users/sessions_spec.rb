@@ -44,18 +44,12 @@ RSpec.describe "User Sessions", type: :request do
     context "when the user is signed in" do
       before do
         sign_in(user)
-        sign_out(token(response))
+        sign_out(token(user))
       end
 
       it 'returns 200' do
         expect(response).to have_http_status(200)
       end
     end
-  end
-
-  private
-
-  def token(response)
-    response.headers['Authorization'].split(' ').last
   end
 end

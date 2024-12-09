@@ -29,7 +29,8 @@ module AuthenticationHelpers
     delete destroy_user_session_path, headers: auth_headers(auth)
   end
 
-  def token(response)
+  def token(user)
+    sign_in(user)
     response.headers['Authorization']&.split(' ')&.last
   end
 
